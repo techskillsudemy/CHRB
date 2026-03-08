@@ -83,7 +83,7 @@ export default function Saisie() {
             <select
               value={mois}
               onChange={(e) => setMois(e.target.value)}
-              className="px-3 py-1.5 bg-surface2 border border-border rounded-lg text-ink text-sm"
+              className="input-premium py-1.5 text-sm"
             >
               {monthOptions.map((o) => (
                 <option key={o.value} value={o.value}>{o.label}</option>
@@ -108,10 +108,10 @@ export default function Saisie() {
           <span>Progression de la saisie</span>
           <span className="font-mono">{stats.progression}%</span>
         </div>
-        <div className="w-full h-2 bg-surface2 rounded-full overflow-hidden">
+        <div className="w-full h-[6px] rounded-full overflow-hidden" style={{ background: 'rgba(142,143,247,0.10)' }}>
           <div
-            className="h-full bg-accent rounded-full transition-all duration-500"
-            style={{ width: `${stats.progression}%` }}
+            className="h-full rounded-full transition-all duration-500"
+            style={{ width: `${stats.progression}%`, background: 'linear-gradient(90deg, #8E8FF7, #A8C7FF)' }}
           />
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function Saisie() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Rechercher un produit…"
-          className="flex-1 max-w-sm px-4 py-2 bg-surface2 border border-border rounded-lg text-ink placeholder-muted"
+          className="input-premium flex-1 max-w-sm"
         />
         <div className="flex gap-2">
           {[
@@ -144,11 +144,12 @@ export default function Saisie() {
             <button
               key={f.key}
               onClick={() => setFilter(f.key)}
-              className={`px-3 py-1.5 text-sm rounded-lg transition-colors cursor-pointer ${
+              className={`px-3.5 py-1.5 text-sm rounded-full transition-all cursor-pointer font-medium ${
                 filter === f.key
-                  ? 'bg-accent/20 text-accent border border-accent/30'
-                  : 'bg-surface2 text-muted border border-border hover:text-ink'
+                  ? 'text-white'
+                  : 'text-muted hover:text-ink'
               }`}
+              style={filter === f.key ? { background: 'linear-gradient(135deg, #8E8FF7, #7B7CF5)', boxShadow: '0 3px 12px rgba(142,143,247,0.22)', border: '1px solid transparent' } : { background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(142,143,247,0.10)' }}
             >
               {f.label}
             </button>
@@ -157,24 +158,24 @@ export default function Saisie() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl border border-border">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="table-premium">
           <thead>
-            <tr className="bg-surface2 border-b border-border">
-              <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Produit</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Exp.</th>
-              <th className="px-4 py-3 text-right text-xs font-semibold text-muted uppercase">Stock théo.</th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-muted uppercase">Stock physique</th>
-              <th className="px-4 py-3 text-right text-xs font-semibold text-muted uppercase">Écart</th>
-              <th className="px-4 py-3 text-right text-xs font-semibold text-muted uppercase">PUA ($)</th>
-              <th className="px-4 py-3 text-right text-xs font-semibold text-muted uppercase">Valeur ($)</th>
+            <tr>
+              <th className="text-left">Produit</th>
+              <th className="text-left">Exp.</th>
+              <th className="text-right">Stock théo.</th>
+              <th className="text-center">Stock physique</th>
+              <th className="text-right">Écart</th>
+              <th className="text-right">PUA ($)</th>
+              <th className="text-right">Valeur ($)</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-border">
+          <tbody>
             {filteredLignes.map((ligne) => (
               <tr
                 key={ligne.produit_id}
-                className={`hover:bg-surface2/50 transition-colors ${getRowBorderClass(ligne)}`}
+                className={getRowBorderClass(ligne)}
               >
                 <td className="px-4 py-3 font-medium text-ink">{ligne.produit.nom}</td>
                 <td className="px-4 py-3 font-mono text-xs text-muted">{ligne.produit.date_expiration}</td>
@@ -190,7 +191,8 @@ export default function Saisie() {
                       min="0"
                       value={ligne.stock_physique ?? ''}
                       onChange={(e) => updateStockPhysique(ligne.produit_id, e.target.value)}
-                      className="w-24 px-2 py-1 bg-surface2 border border-border rounded text-ink font-mono text-center focus:border-accent"
+                      className="w-24 px-2 py-1 rounded-xl font-mono text-center text-sm"
+                      style={{ background: 'rgba(142,143,247,0.06)', border: '1px solid rgba(142,143,247,0.15)', color: 'var(--color-ink)' }}
                       placeholder="—"
                     />
                   )}

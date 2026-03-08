@@ -58,18 +58,18 @@ export default function DataTable({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={searchPlaceholder}
-            className="w-full max-w-sm px-4 py-2 bg-surface2 border border-border rounded-lg text-ink placeholder-muted focus:border-accent"
+            className="input-premium w-full max-w-sm"
           />
         </div>
       )}
-      <div className="overflow-x-auto rounded-xl border border-border">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="table-premium">
           <thead>
-            <tr className="bg-surface2 border-b border-border">
+            <tr>
               {columns.map((col) => (
                 <th
                   key={col.key || col.accessor}
-                  className={`px-4 py-3 text-left text-xs font-semibold text-muted uppercase tracking-wider ${
+                  className={`text-left ${
                     col.sortable !== false ? 'cursor-pointer hover:text-accent select-none' : ''
                   } ${col.className || ''}`}
                   onClick={() => col.sortable !== false && handleSort(col.key || col.accessor)}
@@ -84,7 +84,7 @@ export default function DataTable({
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-border">
+          <tbody>
             {filteredData.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="px-4 py-8 text-center text-muted">
@@ -95,9 +95,7 @@ export default function DataTable({
               filteredData.map((row, i) => (
                 <tr
                   key={row.id || i}
-                  className={`hover:bg-surface2/50 transition-colors ${
-                    rowClassName ? rowClassName(row) : ''
-                  }`}
+                  className={rowClassName ? rowClassName(row) : ''}
                 >
                   {columns.map((col) => (
                     <td key={col.key || col.accessor} className={`px-4 py-3 ${col.cellClassName || ''}`}>

@@ -1,31 +1,31 @@
 // src/components/ui/StatCard.jsx
-export default function StatCard({ label, value, icon, monetary = false, trend, className = '' }) {
+export default function StatCard({ label, value, icon, monetary = false, trend, accentColor, className = '' }) {
   return (
-    <div
-      className={`glass-card p-5 relative overflow-hidden group border-t-2 border-t-accent ${
-        monetary ? 'hover:glow-gold' : 'hover:glow-accent'
-      } ${className}`}
-    >
-      {/* Subtle glow blob */}
-      <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-accent/5 blur-2xl group-hover:bg-accent/10 transition-all duration-500" />
-
-      <div className="flex items-start justify-between mb-4">
-        <span className="text-xs font-semibold text-muted uppercase tracking-widest leading-tight">{label}</span>
+    <div className={`stat-card ${className}`}>
+      <div className="flex items-start justify-between mb-3">
+        <p className="text-[0.68rem] font-semibold text-muted uppercase tracking-widest">{label}</p>
         {icon && (
-          <span className="text-xl opacity-70 group-hover:opacity-100 transition-opacity">{icon}</span>
+          <span
+            className="w-9 h-9 rounded-2xl flex items-center justify-center text-base flex-shrink-0"
+            style={{
+              background: accentColor
+                ? `rgba(${accentColor},0.10)`
+                : monetary
+                ? 'rgba(245,201,106,0.15)'
+                : 'linear-gradient(135deg, rgba(142,143,247,0.12), rgba(168,199,255,0.12))',
+            }}
+          >
+            {icon}
+          </span>
         )}
       </div>
-
-      <div className={`font-semibold leading-none ${
-        monetary
-          ? 'text-gold-shimmer font-mono text-2xl'
-          : 'text-ink text-2xl'
-      }`}>
+      <div className={`font-display text-[1.65rem] font-bold leading-none mt-1 ${
+        monetary ? 'text-gold-shimmer' : ''
+      }`} style={{ fontFamily: 'var(--font-display)', color: monetary ? undefined : '#2D2F45' }}>
         {monetary && typeof value === 'number'
-          ? value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' $'
+          ? value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' $'
           : value}
       </div>
-
       {trend !== undefined && (
         <div className={`mt-2 text-xs font-mono ${
           trend > 0 ? 'text-success' : trend < 0 ? 'text-danger' : 'text-muted'

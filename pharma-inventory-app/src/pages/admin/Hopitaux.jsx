@@ -93,42 +93,42 @@ export default function Hopitaux() {
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? 'Modifier l\'établissement' : 'Créer un établissement'}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">Nom</label>
+            <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Nom</label>
             <input
               value={form.nom}
               onChange={(e) => setForm((f) => ({ ...f, nom: e.target.value }))}
               required
-              className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+              className="input-premium w-full"
               placeholder="Dépôt Kinshasa/Masina"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-muted mb-1">Ville</label>
+              <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Ville</label>
               <input
                 value={form.ville}
                 onChange={(e) => setForm((f) => ({ ...f, ville: e.target.value }))}
                 required
-                className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+                className="input-premium w-full"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-muted mb-1">Pays</label>
+              <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Pays</label>
               <input
                 value={form.pays}
                 onChange={(e) => setForm((f) => ({ ...f, pays: e.target.value }))}
                 required
-                className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+                className="input-premium w-full"
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">Code</label>
+            <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Code</label>
             <input
               value={form.code}
               onChange={(e) => setForm((f) => ({ ...f, code: e.target.value }))}
               required
-              className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink font-mono"
+              className="input-premium w-full font-mono"
               placeholder="KIN-001"
             />
           </div>
@@ -141,7 +141,7 @@ export default function Hopitaux() {
             />
             <label className="text-sm text-ink">Actif</label>
           </div>
-          <div className="flex justify-end gap-3 pt-4 border-t border-border">
+          <div className="flex justify-end gap-3 pt-4" style={{ borderTop: '1px solid rgba(142,143,247,0.08)' }}>
             <Button variant="secondary" type="button" onClick={() => setModalOpen(false)}>
               Annuler
             </Button>

@@ -98,63 +98,64 @@ export default function AdminDashboard() {
 
       {/* Chart */}
       {chartData.length > 0 && (
-        <div className="bg-surface border border-border rounded-xl p-6 mb-8">
+        <div className="glass-card p-6 mb-8">
           <h2 className="text-lg font-semibold text-ink mb-4">
             Valeur physique vs théorique par établissement
           </h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1F3535" />
-              <XAxis dataKey="name" stroke="#3D6B6B" fontSize={12} />
-              <YAxis stroke="#3D6B6B" fontSize={12} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#E2E5F1" />
+              <XAxis dataKey="name" stroke="#8B90B0" fontSize={12} />
+              <YAxis stroke="#8B90B0" fontSize={12} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#111919',
-                  border: '1px solid #1F3535',
-                  borderRadius: '8px',
-                  color: '#F0FAFA',
+                  backgroundColor: 'rgba(255,255,255,0.95)',
+                  border: '1px solid #E2E5F1',
+                  borderRadius: '12px',
+                  color: '#2D2F45',
+                  boxShadow: '0 4px 20px rgba(142,143,247,0.10)',
                 }}
               />
               <Legend />
-              <Bar dataKey="theorique" name="Théorique" fill="#C9A84C" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="physique" name="Physique" fill="#2DD4BF" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="theorique" name="Théorique" fill="#F5C96A" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="physique" name="Physique" fill="#6DD4A0" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       )}
 
       {/* Hospitals table */}
-      <div className="bg-surface border border-border rounded-xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-border">
+      <div className="glass-card overflow-hidden">
+        <div className="px-6 py-4" style={{ borderBottom: '1px solid rgba(142,143,247,0.08)' }}>
           <h2 className="text-lg font-semibold text-ink">Établissements</h2>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="table-premium">
             <thead>
-              <tr className="bg-surface2 border-b border-border">
-                <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Nom</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Code</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Ville</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Produits</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-muted uppercase">Statut inv.</th>
-                <th className="px-4 py-3 text-right text-xs font-semibold text-muted uppercase">Valeur stock</th>
+              <tr>
+                <th className="text-left">Nom</th>
+                <th className="text-left">Code</th>
+                <th className="text-left">Ville</th>
+                <th className="text-left">Produits</th>
+                <th className="text-left">Statut inv.</th>
+                <th className="text-right">Valeur stock</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody>
               {hopitauxDetails.map((h) => {
                 const s = statutLabel(h.statut);
                 return (
-                  <tr key={h.id} className="hover:bg-surface2/50 transition-colors">
-                    <td className="px-4 py-3 font-medium text-ink">{h.nom}</td>
-                    <td className="px-4 py-3 font-mono text-muted text-xs">{h.code}</td>
-                    <td className="px-4 py-3 text-muted">{h.ville}</td>
-                    <td className="px-4 py-3 font-mono">{h.nbProduits}</td>
-                    <td className="px-4 py-3">
+                  <tr key={h.id}>
+                    <td className="font-medium text-ink">{h.nom}</td>
+                    <td className="font-mono text-muted text-xs">{h.code}</td>
+                    <td className="text-muted">{h.ville}</td>
+                    <td className="font-mono">{h.nbProduits}</td>
+                    <td>
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${s.cls}`}>
                         {s.text}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right font-mono text-gold">
+                    <td className="text-right font-mono text-gold">
                       {h.valeurStock.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} $
                     </td>
                   </tr>

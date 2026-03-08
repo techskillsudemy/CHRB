@@ -83,7 +83,7 @@ export default function Rapport() {
     return (
       <div>
         <h1 className="font-display text-2xl font-bold text-ink mb-6">Rapport d'inventaire</h1>
-        <div className="bg-surface rounded-lg border border-border p-8 text-center text-muted">
+        <div className="glass-card p-8 text-center text-muted">
           Aucun inventaire clôturé disponible pour générer un rapport.
         </div>
       </div>
@@ -98,7 +98,7 @@ export default function Rapport() {
           <select
             value={selectedMois}
             onChange={(e) => setSelectedMois(e.target.value)}
-            className="bg-surface border border-border text-ink rounded-lg px-3 py-2 text-sm"
+            className="input-premium px-3 py-2 text-sm"
           >
             {inventaires.map((inv) => (
               <option key={inv.id} value={inv.mois}>

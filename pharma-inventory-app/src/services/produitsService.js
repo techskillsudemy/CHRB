@@ -50,25 +50,33 @@ export async function deleteProduit(id) {
 }
 
 /**
- * Count products expiring soon (within 3 months) for a hospital.
+ * Count lots expiring soon (within 3 months) for a hospital.
+ * Uses lot-level expiration (not product-level).
  */
 export async function getExpiringCount(hopitalId) {
-  const produits = await getProduits(hopitalId);
+  const { getLots } = await import('./lotsService.js');
+  const lots = getLots(hopitalId);
   const now = new Date();
   const threeMonths = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
-  return produits.filter((p) => {
-    const exp = new Date(p.date_expiration);
+  return lots.filter((l) => {
+    if (!l.date_expiration) return false;
+    const exp = new Date(l.date_expiration);
     return exp <= threeMonths && exp >= now;
   }).length;
 }
 
 /**
- * Count expired products for a hospital.
+ * Count expired lots for a hospital.
+ * Uses lot-level expiration (not product-level).
  */
 export async function getExpiredCount(hopitalId) {
-  const produits = await getProduits(hopitalId);
+  const { getLots } = await import('./lotsService.js');
+  const lots = getLots(hopitalId);
   const now = new Date();
-  return produits.filter((p) => new Date(p.date_expiration) < now).length;
+  return lots.filter((l) => {
+    if (!l.date_expiration) return false;
+    return new Date(l.date_expiration) < now;
+  }).length;
 }
 
 export default {

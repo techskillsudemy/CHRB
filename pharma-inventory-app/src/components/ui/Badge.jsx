@@ -1,18 +1,15 @@
 // src/components/ui/Badge.jsx
 export default function Badge({ children, variant = 'default', className = '' }) {
-  const variants = {
-    default: 'bg-surface2 text-muted',
-    success: 'bg-success/20 text-success',
-    danger: 'bg-danger/20 text-danger',
-    warn: 'bg-warn/20 text-warn',
-    accent: 'bg-accent/20 text-accent',
-    gold: 'bg-gold/20 text-gold',
+  const cls = {
+    default: 'badge badge-default',
+    success: 'badge badge-success',
+    danger:  'badge badge-danger',
+    warn:    'badge badge-warn',
+    accent:  'badge badge-accent',
+    gold:    'badge badge-gold',
   };
-
   return (
-    <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${variants[variant] || variants.default} ${className}`}
-    >
+    <span className={`${cls[variant] || cls.default} ${className}`}>
       {children}
     </span>
   );

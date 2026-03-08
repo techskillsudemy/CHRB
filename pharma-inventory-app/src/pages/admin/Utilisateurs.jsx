@@ -120,26 +120,26 @@ export default function Utilisateurs() {
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? 'Modifier l\'utilisateur' : 'Créer un utilisateur'}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">Nom complet</label>
+            <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Nom complet</label>
             <input
               value={form.nom}
               onChange={(e) => setForm((f) => ({ ...f, nom: e.target.value }))}
               required
-              className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+              className="input-premium w-full"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">Email</label>
+            <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Email</label>
             <input
               type="email"
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
               required
-              className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink font-mono"
+              className="input-premium w-full font-mono"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">
+            <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">
               {editId ? 'Nouveau mot de passe (laisser vide pour garder)' : 'Mot de passe'}
             </label>
             <input
@@ -147,16 +147,16 @@ export default function Utilisateurs() {
               value={form.password}
               onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
               required={!editId}
-              className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+              className="input-premium w-full"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-muted mb-1">Rôle</label>
+              <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Rôle</label>
               <select
                 value={form.role}
                 onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
-                className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+                className="input-premium w-full"
               >
                 {roles.map((r) => (
                   <option key={r.value} value={r.value}>{r.label}</option>
@@ -164,11 +164,11 @@ export default function Utilisateurs() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-muted mb-1">Établissement</label>
+              <label className="block text-[0.68rem] font-semibold text-muted uppercase tracking-widest mb-2">Établissement</label>
               <select
                 value={form.hopital_code}
                 onChange={(e) => setForm((f) => ({ ...f, hopital_code: e.target.value }))}
-                className="w-full px-4 py-2 bg-surface2 border border-border rounded-lg text-ink"
+                className="input-premium w-full"
               >
                 <option value="">— Aucun —</option>
                 {hopitaux.map((h) => (
@@ -177,7 +177,7 @@ export default function Utilisateurs() {
               </select>
             </div>
           </div>
-          <div className="flex justify-end gap-3 pt-4 border-t border-border">
+          <div className="flex justify-end gap-3 pt-4" style={{ borderTop: '1px solid rgba(142,143,247,0.08)' }}>
             <Button variant="secondary" type="button" onClick={() => setModalOpen(false)}>Annuler</Button>
             <Button type="submit">{editId ? 'Enregistrer' : 'Créer'}</Button>
           </div>

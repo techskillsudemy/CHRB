@@ -94,28 +94,29 @@ export default function Historique() {
       <h1 className="font-display text-2xl font-bold text-ink mb-6">Historique des inventaires</h1>
 
       {inventaires.length === 0 ? (
-        <div className="bg-surface rounded-lg border border-border p-8 text-center text-muted">
+        <div className="glass-card p-8 text-center text-muted">
           Aucun inventaire clôturé pour le moment.
         </div>
       ) : (
         <>
           {/* Chart */}
           {chartData.length > 1 && (
-            <div className="bg-surface rounded-lg border border-border p-4 mb-6">
+            <div className="glass-card p-4 mb-6">
               <h2 className="text-sm font-semibold text-muted mb-4">
                 Évolution des valeurs — 6 derniers mois
               </h2>
               <ResponsiveContainer width="100%" height={280}>
                 <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1F3535" />
-                  <XAxis dataKey="mois" stroke="#3D6B6B" tick={{ fontSize: 12 }} />
-                  <YAxis stroke="#3D6B6B" tick={{ fontSize: 12 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E5F1" />
+                  <XAxis dataKey="mois" stroke="#8B90B0" tick={{ fontSize: 12 }} />
+                  <YAxis stroke="#8B90B0" tick={{ fontSize: 12 }} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#111919',
-                      border: '1px solid #1F3535',
-                      borderRadius: '8px',
-                      color: '#F0FAFA',
+                      backgroundColor: 'rgba(255,255,255,0.95)',
+                      border: '1px solid #E2E5F1',
+                      borderRadius: '12px',
+                      color: '#2D2F45',
+                      boxShadow: '0 4px 20px rgba(142,143,247,0.10)',
                     }}
                     formatter={(v) => `$${v.toFixed(2)}`}
                   />
@@ -123,18 +124,18 @@ export default function Historique() {
                   <Line
                     type="monotone"
                     dataKey="theorique"
-                    stroke="#C9A84C"
+                    stroke="#F5C96A"
                     name="Valeur théorique"
                     strokeWidth={2}
-                    dot={{ fill: '#C9A84C' }}
+                    dot={{ fill: '#F5C96A' }}
                   />
                   <Line
                     type="monotone"
                     dataKey="physique"
-                    stroke="#2DD4BF"
+                    stroke="#6DD4A0"
                     name="Valeur physique"
                     strokeWidth={2}
-                    dot={{ fill: '#2DD4BF' }}
+                    dot={{ fill: '#6DD4A0' }}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -149,11 +150,11 @@ export default function Historique() {
               return (
                 <div
                   key={inv.id}
-                  className="bg-surface rounded-lg border border-border overflow-hidden"
+                  className="glass-card overflow-hidden"
                 >
                   <button
                     onClick={() => toggleExpand(inv)}
-                    className="w-full flex items-center justify-between p-4 text-left hover:bg-surface2 transition-colors"
+                    className="w-full flex items-center justify-between p-4 text-left hover:bg-white/40 transition-colors cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-sm text-accent">
@@ -179,7 +180,7 @@ export default function Historique() {
                   </button>
 
                   {isOpen && s && (
-                    <div className="border-t border-border p-4 space-y-4">
+                    <div className="border-t border-border/50 p-4 space-y-4">
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <StatCard label="Produits saisis" value={s.totalSaisis} small />
                         <StatCard label="Valeur théorique" value={s.valTheo} monetary small />

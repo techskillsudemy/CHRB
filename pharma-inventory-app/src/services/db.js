@@ -10,6 +10,7 @@ const KEYS = {
   inventaires: 'depot_inventaires',
   lignes: 'depot_lignes',
   mouvements: 'depot_mouvements',
+  lots: 'depot_lots',
   session: 'depot_session',
 };
 
