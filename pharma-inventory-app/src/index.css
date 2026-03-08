@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #070D0D;
+  --color-surface: #0E1616;
+  --color-surface2: #152020;
+  --color-border: #1A3030;
+  --color-accent: #2DD4BF;
+  --color-gold: #C9A84C;
+  --color-success: #34D399;
+  --color-danger: #FB7185;
+  --color-warn: #FCD34D;
+  --color-ink: #EEF9F9;
+  --color-muted: #3D6B6B;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'DM Sans', sans-serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(45,212,191,0.25); }
+  50%       { box-shadow: 0 0 20px rgba(45,212,191,0.45); }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* ── Glass card ─────────────────────────────────────────── */
+.glass-card {
+  background: linear-gradient(145deg, rgba(21,32,32,0.9) 0%, rgba(14,22,22,0.95) 100%);
+  border: 1px solid rgba(45,212,191,0.10);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 1px 0 0 rgba(45,212,191,0.06) inset,
+    0 4px 24px rgba(0,0,0,0.4);
+  animation: fadeIn 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(45,212,191,0.16);
+  box-shadow:
+    0 1px 0 0 rgba(45,212,191,0.10) inset,
+    0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* ── Premium input ──────────────────────────────────────── */
+.input-premium {
+  background: rgba(10,20,20,0.6);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-ink);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-premium::placeholder {
+  color: var(--color-muted);
+}
+
+.input-premium:focus {
+  outline: none;
+  border-color: rgba(45,212,191,0.45);
+  box-shadow: 0 0 0 3px rgba(45,212,191,0.12), 0 0 16px rgba(45,212,191,0.08);
+}
+
+.input-premium option {
+  background: var(--color-surface2);
+  color: var(--color-ink);
+}
+
+/* ── Gold shimmer text ──────────────────────────────────── */
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #C9A84C 0%, #f0d080 45%, #C9A84C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Glow utilities ─────────────────────────────────────── */
+.glow-accent { box-shadow: 0 0 16px rgba(45,212,191,0.30); }
+.glow-success { box-shadow: 0 0 16px rgba(52,211,153,0.25); }
+.glow-danger  { box-shadow: 0 0 16px rgba(251,113,133,0.25); }
+.glow-gold    { box-shadow: 0 0 16px rgba(201,168,76,0.25); }
+
+/* ── Sidebar gradient ───────────────────────────────────── */
+.sidebar-gradient {
+  background: linear-gradient(180deg, #0B1515 0%, #0A1212 60%, #080F0F 100%);
+}
+
+/* ── Active nav link ────────────────────────────────────── */
+.nav-active {
+  background: linear-gradient(90deg, rgba(45,212,191,0.15) 0%, rgba(45,212,191,0.05) 100%);
+  color: var(--color-accent);
+  border-left: 2px solid var(--color-accent);
+  box-shadow: inset 0 0 12px rgba(45,212,191,0.05);
+}
+
+/* ── Font utilities ─────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ── Page animation ─────────────────────────────────────── */
+main > * {
+  animation: fadeIn 0.25s ease;
+}
+
+/* ── Modal slide-up ─────────────────────────────────────── */
+.modal-panel {
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+button, a, input, select, textarea {
+  transition: all 0.18s ease;
+}
+
+@media print {
+  body { background: white !important; color: black !important; }
+  .no-print { display: none !important; }
+}
